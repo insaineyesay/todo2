@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import CoreData
 
-class TodoListItem {
+class TodoListItem: Codable {
     var title: String = ""
     var isChecked: Bool = false
     
