@@ -16,8 +16,6 @@ class TodoListViewController: UITableViewController {
         super.viewDidLoad()
     
         // Do any additional setup after loading the view, typically from a nib.
-        let item1 = TodoListItem(userTitle: "Help the kids with their project")
-        itemArray.append(item1)
         getStoredList()
     }
     
@@ -52,12 +50,11 @@ class TodoListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(itemArray[indexPath.row])
         let item = itemArray[indexPath.row]
-//        let cellItem = tableView.cellForRow(at: indexPath)
+
         item.isChecked = !item.isChecked
         saveItems()
-//        cellItem?.accessoryType = item.isChecked ? .checkmark : .none
+        
         tableView.deselectRow(at: indexPath, animated: true)
   
     }
