@@ -7,28 +7,17 @@
 //
 
 import UIKit
+import CoreData
 
 class TodoListViewController: UITableViewController {
     var itemArray = [TodoListItem]()
-    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("TodoItems.plist")
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+//        let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         // Do any additional setup after loading the view, typically from a nib.
         getStoredList()
-    }
-    
-    func getStoredList() {
-        
-        if let data = try? Data(contentsOf: dataFilePath!) {
-            let decoder = PropertyListDecoder()
-            do {
-                itemArray = try decoder.decode([TodoListItem].self, from: data)
-            } catch {
-                print ("Error decoding data \(error)")
-            }
-        }
     }
     
     //MARK: - Tableview DataSource Methods
@@ -51,12 +40,14 @@ class TodoListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = itemArray[indexPath.row]
-
+        
         item.isChecked = !item.isChecked
+//        context.delete(itemArray[indexPath.row])
+//        itemArray.remove(at: indexPath.row)
         saveItems()
         
         tableView.deselectRow(at: indexPath, animated: true)
-  
+        
     }
     
     @IBAction func addButtonPress(_ sender: UIBarButtonItem) {
@@ -65,7 +56,10 @@ class TodoListViewController: UITableViewController {
         let alert = UIAlertController(title: "Add a new Todoey Item", message: "", preferredStyle: .alert)
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
             // what's going to happen when the add button is pressed
-            let newTodoItem = TodoListItem(userTitle: newItemText.text!)
+            
+            let newTodoItem = TodoListItem(context: self.context)
+            newTodoItem.title = newItemText.text!
+            newTodoItem.isChecked = false
             
             self.itemArray.append(newTodoItem)
             
@@ -80,18 +74,29 @@ class TodoListViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    //MARK: - Data Manipulation
+    
     func saveItems() {
-        let encoder = PropertyListEncoder()
         
         do {
-            let data = try encoder.encode(itemArray)
-            try data.write(to: dataFilePath!)
+            try self.context.save()
         } catch {
             // something will go here to catch errors
-            print("error in coding item array, \(error)")
+            print("**ERROR SAVING CONTEXT**, \(error)")
         }
         self.tableView.reloadData()
     }
     
+    func getStoredList() {
+        // Always supply the entity for the fetch request
+        let request : NSFetchRequest<TodoListItem> = TodoListItem.fetchRequest()
+        do {
+            itemArray = try context.fetch(request)
+        } catch {
+            print("ERROR DURING FETCH REQUEST FROM CONTEXT, \(error)")
+        }
+    }
+    
+    
+    
 }
-
