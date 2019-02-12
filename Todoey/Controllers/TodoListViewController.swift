@@ -87,14 +87,15 @@ class TodoListViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
-    func getStoredList() {
+    func getStoredList(with request: NSFetchRequest<TodoListItem> = TodoListItem.fetchRequest()) {
         // Always supply the entity for the fetch request
-        let request : NSFetchRequest<TodoListItem> = TodoListItem.fetchRequest()
         do {
             itemArray = try context.fetch(request)
         } catch {
             print("ERROR DURING FETCH REQUEST FROM CONTEXT, \(error)")
         }
+        
+        tableView.reloadData()
     }
     
     
