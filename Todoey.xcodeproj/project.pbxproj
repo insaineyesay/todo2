@@ -14,6 +14,7 @@
 		F0221082220733BC003FE339 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0221080220733BC003FE339 /* LaunchScreen.storyboard */; };
 		F07A3BC3221060500061EF3D /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F07A3BC1221060500061EF3D /* DataModel.xcdatamodeld */; };
 		F07A3BC6221129E50061EF3D /* SearchBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07A3BC5221129E50061EF3D /* SearchBarExtension.swift */; };
+		F07A3BC8221278900061EF3D /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07A3BC7221278900061EF3D /* CategoryTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		F0221083220733BC003FE339 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F07A3BC2221060500061EF3D /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		F07A3BC5221129E50061EF3D /* SearchBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarExtension.swift; sourceTree = "<group>"; };
+		F07A3BC7221278900061EF3D /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,9 +80,10 @@
 		F07A3B9D220F11D60061EF3D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F07A3BC7221278900061EF3D /* CategoryTableViewController.swift */,
+				F0221079220733BA003FE339 /* TodoListViewController.swift */,
 				F07A3BC4221129CD0061EF3D /* Extensions */,
 				F0221077220733BA003FE339 /* AppDelegate.swift */,
-				F0221079220733BA003FE339 /* TodoListViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -183,6 +186,7 @@
 			files = (
 				F07A3BC3221060500061EF3D /* DataModel.xcdatamodeld in Sources */,
 				F022107A220733BA003FE339 /* TodoListViewController.swift in Sources */,
+				F07A3BC8221278900061EF3D /* CategoryTableViewController.swift in Sources */,
 				F0221078220733BA003FE339 /* AppDelegate.swift in Sources */,
 				F07A3BC6221129E50061EF3D /* SearchBarExtension.swift in Sources */,
 			);
