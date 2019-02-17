@@ -11,13 +11,18 @@ import CoreData
 
 class TodoListViewController: UITableViewController {
     var itemArray = [TodoListItem]()
+    var selectedTodoList : TodoListCategory? {
+        didSet{
+            getStoredList()
+        }
+    }
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
 //        let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         // Do any additional setup after loading the view, typically from a nib.
-        getStoredList()
+//        getStoredList()
     }
     
     //MARK: - Tableview DataSource Methods
@@ -60,7 +65,7 @@ class TodoListViewController: UITableViewController {
             let newTodoItem = TodoListItem(context: self.context)
             newTodoItem.title = newItemText.text!
             newTodoItem.isChecked = false
-            
+            newTodoItem.parentCategory = self.selectedTodoList
             self.itemArray.append(newTodoItem)
             
             self.saveItems()
@@ -89,6 +94,21 @@ class TodoListViewController: UITableViewController {
     
     func getStoredList(with request: NSFetchRequest<TodoListItem> = TodoListItem.fetchRequest()) {
         // Always supply the entity for the fetch request
+        if request.predicate != nil {
+            let searchPredicate = request.predicate
+            let parentCategoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedTodoList!.name!)
+            let compoundPredicate = NSCompoundPredicate(
+                type: .and,
+                subpredicates: [parentCategoryPredicate, searchPredicate!]
+            )
+            
+            request.predicate = compoundPredicate
+            
+        } else {
+            let predicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedTodoList!.name!)
+            request.predicate = predicate
+        }
+        
         do {
             itemArray = try context.fetch(request)
         } catch {

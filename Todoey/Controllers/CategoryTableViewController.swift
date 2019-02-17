@@ -67,6 +67,14 @@ class CategoryTableViewController: UITableViewController {
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! TodoListViewController
+        
+        if let indexPath = tableView.indexPathForSelectedRow {
+            destinationVC.selectedTodoList = todoListCategoryArray[indexPath.row]
+        }
+    }
+
     //MARK: - Data Manipulation methods
     
     func getCategoryLists(request: NSFetchRequest<TodoListCategory> = TodoListCategory.fetchRequest()) {

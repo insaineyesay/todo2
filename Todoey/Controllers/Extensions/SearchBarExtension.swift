@@ -14,6 +14,7 @@ extension TodoListViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let request: NSFetchRequest<TodoListItem> = TodoListItem.fetchRequest()
 
+//        NSPredicate(format: "(parentCategory.name MATCHES %@) AND (title CONTAINS[cd] %@)", selectedTodoList!.name!, searchText)
         request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
         request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
         
