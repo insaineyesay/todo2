@@ -7,12 +7,12 @@
 //
 
 import UIKit
-import CoreData
+import RealmSwift
 
 class CategoryTableViewController: UITableViewController {
 
-    var todoListCategoryArray = [TodoListCategory]()
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let realm = try! Realm()
+    var todoListCategoryArray: Results<TodoListCategory>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,11 +26,10 @@ class CategoryTableViewController: UITableViewController {
         
         let alert = UIAlertController(title: "Add a List", message: "Dude, get a move on...", preferredStyle: .alert)
         let action = UIAlertAction(title: "Add something", style: .default) { (action) in
-            let newTodoList = TodoListCategory(context: self.context)
+            let newTodoList = TodoListCategory()
             newTodoList.name = newItemTextField.text!
-            self.todoListCategoryArray.append(newTodoList)
             
-            self.saveTodoLists()
+            self.save(todoListCategory: newTodoList)
             
         }
         alert.addTextField { (alertTextField) in
@@ -44,13 +43,13 @@ class CategoryTableViewController: UITableViewController {
     
     //MARK: - TableView Datasource Methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todoListCategoryArray.count
+        return todoListCategoryArray?.count ?? 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
-        let item = todoListCategoryArray[indexPath.row]
-        cell.textLabel?.text = item.name
+        let item = todoListCategoryArray?[indexPath.row]
+        cell.textLabel?.text = item?.name ?? "No Caetgories yet available"
         
         return cell
     }
@@ -71,24 +70,23 @@ class CategoryTableViewController: UITableViewController {
         let destinationVC = segue.destination as! TodoListViewController
         
         if let indexPath = tableView.indexPathForSelectedRow {
-            destinationVC.selectedTodoList = todoListCategoryArray[indexPath.row]
+            destinationVC.selectedTodoList = todoListCategoryArray?[indexPath.row]
         }
     }
 
     //MARK: - Data Manipulation methods
     
-    func getCategoryLists(request: NSFetchRequest<TodoListCategory> = TodoListCategory.fetchRequest()) {
-        do {
-            todoListCategoryArray = try context.fetch(request)
-        } catch {
-            print("***ERROR FETCHING THE CATEGORY LIST!!***, \(error)")
-        }
+    func getCategoryLists() {
+        todoListCategoryArray = realm.objects(TodoListCategory.self)
+        tableView.reloadData()
     }
     
     
-    func saveTodoLists() {
+    func save(todoListCategory: TodoListCategory) {
         do {
-            try self.context.save()
+            try realm.write {
+                realm.add(todoListCategory)
+            }
         } catch {
            print("***ERROR SAVING CONTEXT!!***, \(error)")
         }

@@ -14,7 +14,9 @@
 		F0221082220733BC003FE339 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0221080220733BC003FE339 /* LaunchScreen.storyboard */; };
 		F02D76AF22191B6D00EFAD75 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F02D76AD22191B6D00EFAD75 /* RealmSwift.framework */; };
 		F02D76B022191B6D00EFAD75 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F02D76AE22191B6D00EFAD75 /* Realm.framework */; };
-		F07A3BC3221060500061EF3D /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F07A3BC1221060500061EF3D /* DataModel.xcdatamodeld */; };
+		F02D76B322191F2100EFAD75 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02D76B222191F2100EFAD75 /* Data.swift */; };
+		F02D76B522192D1300EFAD75 /* TodoListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02D76B422192D1300EFAD75 /* TodoListItem.swift */; };
+		F02D76B722192D2100EFAD75 /* TodoListCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02D76B622192D2100EFAD75 /* TodoListCategory.swift */; };
 		F07A3BC6221129E50061EF3D /* SearchBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07A3BC5221129E50061EF3D /* SearchBarExtension.swift */; };
 		F07A3BC8221278900061EF3D /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07A3BC7221278900061EF3D /* CategoryTableViewController.swift */; };
 /* End PBXBuildFile section */
@@ -29,7 +31,9 @@
 		F0221083220733BC003FE339 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F02D76AD22191B6D00EFAD75 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		F02D76AE22191B6D00EFAD75 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
-		F07A3BC2221060500061EF3D /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		F02D76B222191F2100EFAD75 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		F02D76B422192D1300EFAD75 /* TodoListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListItem.swift; sourceTree = "<group>"; };
+		F02D76B622192D2100EFAD75 /* TodoListCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListCategory.swift; sourceTree = "<group>"; };
 		F07A3BC5221129E50061EF3D /* SearchBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarExtension.swift; sourceTree = "<group>"; };
 		F07A3BC7221278900061EF3D /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -88,7 +92,9 @@
 		F07A3B9A220F0DE80061EF3D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F07A3BC1221060500061EF3D /* DataModel.xcdatamodeld */,
+				F02D76B222191F2100EFAD75 /* Data.swift */,
+				F02D76B422192D1300EFAD75 /* TodoListItem.swift */,
+				F02D76B622192D2100EFAD75 /* TodoListCategory.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -205,11 +211,14 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Realm.framework$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
 			);
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
+				"$(DERIVED_FILE_DIR)/$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -222,11 +231,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F07A3BC3221060500061EF3D /* DataModel.xcdatamodeld in Sources */,
+				F02D76B322191F2100EFAD75 /* Data.swift in Sources */,
 				F022107A220733BA003FE339 /* TodoListViewController.swift in Sources */,
 				F07A3BC8221278900061EF3D /* CategoryTableViewController.swift in Sources */,
+				F02D76B522192D1300EFAD75 /* TodoListItem.swift in Sources */,
 				F0221078220733BA003FE339 /* AppDelegate.swift in Sources */,
 				F07A3BC6221129E50061EF3D /* SearchBarExtension.swift in Sources */,
+				F02D76B722192D2100EFAD75 /* TodoListCategory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,19 +445,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		F07A3BC1221060500061EF3D /* DataModel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				F07A3BC2221060500061EF3D /* DataModel.xcdatamodel */,
-			);
-			currentVersion = F07A3BC2221060500061EF3D /* DataModel.xcdatamodel */;
-			path = DataModel.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = F022106C220733BA003FE339 /* Project object */;
 }
