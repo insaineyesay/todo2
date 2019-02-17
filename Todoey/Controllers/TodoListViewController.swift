@@ -92,21 +92,14 @@ class TodoListViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
-    func getStoredList(with request: NSFetchRequest<TodoListItem> = TodoListItem.fetchRequest()) {
+    func getStoredList(with request: NSFetchRequest<TodoListItem> = TodoListItem.fetchRequest(), predicate: NSPredicate? = nil) {
         // Always supply the entity for the fetch request
-        if request.predicate != nil {
-            let searchPredicate = request.predicate
-            let parentCategoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedTodoList!.name!)
-            let compoundPredicate = NSCompoundPredicate(
-                type: .and,
-                subpredicates: [parentCategoryPredicate, searchPredicate!]
-            )
-            
-            request.predicate = compoundPredicate
+        let parentCategoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedTodoList!.name!)
+        if let searchPredicate = predicate {
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [parentCategoryPredicate, searchPredicate])
             
         } else {
-            let predicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedTodoList!.name!)
-            request.predicate = predicate
+            request.predicate = parentCategoryPredicate
         }
         
         do {
