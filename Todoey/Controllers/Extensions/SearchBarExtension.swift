@@ -12,18 +12,13 @@ import CoreData
 
 extension TodoListViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        let request: NSFetchRequest<TodoListItem> = TodoListItem.fetchRequest()
-
-//        request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
-//        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
-        
-//        getStoredList(with: request, predicate: request.predicate)
+        todoItems = todoItems?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: "title", ascending: true)
+        tableView.reloadData()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text?.count == 0 {
-//            getStoredList()
-            
+            getStoredList()
             DispatchQueue.main.async {
                 searchBar.resignFirstResponder()
             }

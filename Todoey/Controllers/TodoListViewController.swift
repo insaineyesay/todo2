@@ -48,6 +48,8 @@ class TodoListViewController: UITableViewController {
         if let item = todoItems?[indexPath.row] {
             do {
                 try realm.write {
+                    // deleting would be something like
+                    // realm.delete(item)
                     item.isChecked = !item.isChecked
                     tableView.deselectRow(at: indexPath, animated: true)
                 }
