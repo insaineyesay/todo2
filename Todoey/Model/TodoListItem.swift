@@ -13,4 +13,5 @@ class TodoListItem: Object {
     @objc dynamic var title: String = ""
     @objc dynamic var isChecked: Bool = false
     var parentCategory = LinkingObjects(fromType: TodoListCategory.self, property: "items")
+    @objc dynamic var dateCreated: Date?
 }

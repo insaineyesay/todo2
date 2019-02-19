@@ -71,6 +71,7 @@ class TodoListViewController: UITableViewController {
                     try self.realm.write {
                         let newTodoItem = TodoListItem()
                         newTodoItem.title = newItemText.text!
+                        newTodoItem.dateCreated = Date()
                         currentCategory.items.append(newTodoItem)
                     }
                 } catch {
