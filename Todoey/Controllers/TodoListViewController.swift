@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import SwipeCellKit
 
 class TodoListViewController: UITableViewController {
     var todoItems: Results<TodoListItem>?
@@ -33,7 +34,7 @@ class TodoListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TodoItemCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SwipeTableViewCell
         if let item = todoItems?[indexPath.row] {
             cell.textLabel?.text = item.title
             cell.accessoryType = item.isChecked ? .checkmark : .none
@@ -59,6 +60,7 @@ class TodoListViewController: UITableViewController {
         }
         self.tableView.reloadData()
     }
+    
     
     @IBAction func addButtonPress(_ sender: UIBarButtonItem) {
         var newItemText = UITextField()
