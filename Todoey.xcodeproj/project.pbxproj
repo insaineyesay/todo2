@@ -19,6 +19,8 @@
 		F02D76B722192D2100EFAD75 /* TodoListCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02D76B622192D2100EFAD75 /* TodoListCategory.swift */; };
 		F07A3BC6221129E50061EF3D /* SearchBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07A3BC5221129E50061EF3D /* SearchBarExtension.swift */; };
 		F07A3BC8221278900061EF3D /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07A3BC7221278900061EF3D /* CategoryTableViewController.swift */; };
+		F0836027221CDC81001767D4 /* SwipeCellKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0836026221CDC81001767D4 /* SwipeCellKit.framework */; };
+		F083602B221CFBC3001767D4 /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F083602A221CFBC3001767D4 /* SwipeTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		F02D76B622192D2100EFAD75 /* TodoListCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListCategory.swift; sourceTree = "<group>"; };
 		F07A3BC5221129E50061EF3D /* SearchBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarExtension.swift; sourceTree = "<group>"; };
 		F07A3BC7221278900061EF3D /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
+		F0836026221CDC81001767D4 /* SwipeCellKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwipeCellKit.framework; path = Carthage/Build/iOS/SwipeCellKit.framework; sourceTree = "<group>"; };
+		F083602A221CFBC3001767D4 /* SwipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0836027221CDC81001767D4 /* SwipeCellKit.framework in Frameworks */,
 				F02D76AF22191B6D00EFAD75 /* RealmSwift.framework in Frameworks */,
 				F02D76B022191B6D00EFAD75 /* Realm.framework in Frameworks */,
 			);
@@ -83,6 +88,7 @@
 		F02D76AC22191B6D00EFAD75 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F0836026221CDC81001767D4 /* SwipeCellKit.framework */,
 				F02D76AE22191B6D00EFAD75 /* Realm.framework */,
 				F02D76AD22191B6D00EFAD75 /* RealmSwift.framework */,
 			);
@@ -104,6 +110,7 @@
 			children = (
 				F07A3BC7221278900061EF3D /* CategoryTableViewController.swift */,
 				F0221079220733BA003FE339 /* TodoListViewController.swift */,
+				F083602A221CFBC3001767D4 /* SwipeTableViewController.swift */,
 				F07A3BC4221129CD0061EF3D /* Extensions */,
 				F0221077220733BA003FE339 /* AppDelegate.swift */,
 			);
@@ -213,12 +220,14 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwipeCellKit.framework",
 			);
 			outputFileListPaths = (
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
 				"$(DERIVED_FILE_DIR)/$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
+				"$(DERIVED_FILE_DIR)/$(SRCROOT)/Carthage/Build/iOS/SwipeCellKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -234,6 +243,7 @@
 				F02D76B322191F2100EFAD75 /* Data.swift in Sources */,
 				F022107A220733BA003FE339 /* TodoListViewController.swift in Sources */,
 				F07A3BC8221278900061EF3D /* CategoryTableViewController.swift in Sources */,
+				F083602B221CFBC3001767D4 /* SwipeTableViewController.swift in Sources */,
 				F02D76B522192D1300EFAD75 /* TodoListItem.swift in Sources */,
 				F0221078220733BA003FE339 /* AppDelegate.swift in Sources */,
 				F07A3BC6221129E50061EF3D /* SearchBarExtension.swift in Sources */,
