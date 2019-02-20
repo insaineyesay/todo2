@@ -13,7 +13,7 @@ class SwipeTableViewController: UITableViewController, SwipeTableViewCellDelegat
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        tableView.rowHeight = 80
     }
     
     //TableView DataSource Methods
@@ -29,7 +29,6 @@ class SwipeTableViewController: UITableViewController, SwipeTableViewCellDelegat
         guard orientation == .right else { return nil }
         
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
-            print("something should be deleted")
             self.updateModel(at: indexPath)
 
         }

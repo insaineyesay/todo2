@@ -8,9 +8,8 @@
 
 import UIKit
 import RealmSwift
-import SwipeCellKit
 
-class TodoListViewController: UITableViewController {
+class TodoListViewController: SwipeTableViewController {
     var todoItems: Results<TodoListItem>?
     let realm = try! Realm()
     var selectedTodoList : TodoListCategory? {
@@ -34,7 +33,9 @@ class TodoListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SwipeTableViewCell
+
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        
         if let item = todoItems?[indexPath.row] {
             cell.textLabel?.text = item.title
             cell.accessoryType = item.isChecked ? .checkmark : .none
@@ -99,6 +100,18 @@ class TodoListViewController: UITableViewController {
         // Always supply the entity for the fetch request
         todoItems = selectedTodoList?.items.sorted(byKeyPath: "title", ascending: true)
         tableView.reloadData()
+    }
+    
+    override func updateModel(at indexPath: IndexPath) {
+        if let todoListItemToBeDeleted = self.todoItems?[indexPath.row] {
+            do {
+                try self.realm.write {
+                    self.realm.delete(todoListItemToBeDeleted)
+                }
+            } catch {
+                print("***ERROR DURING ITEM DELETE***, \(error)")
+            }
+        }
     }
     
     
