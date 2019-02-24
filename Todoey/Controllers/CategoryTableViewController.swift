@@ -50,9 +50,13 @@ class CategoryTableViewController: SwipeTableViewController  {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
-        let color = todoListCategoryArray?[indexPath.row].categoryBgColor
-        cell.textLabel?.text = todoListCategoryArray?[indexPath.row].name ?? "No Caetgories yet available"
-        cell.backgroundColor = UIColor(hexString: color)
+        if let category = todoListCategoryArray?[indexPath.row] {
+            let color = todoListCategoryArray?[indexPath.row].categoryBgColor
+            cell.textLabel?.text = todoListCategoryArray?[indexPath.row].name ?? "No Caetgories yet available"
+            guard let categoryColor = UIColor(hexString: category.categoryBgColor) else { fatalError() }
+            cell.textLabel?.textColor = ContrastColorOf(categoryColor, returnFlat: true)
+            cell.backgroundColor = UIColor(hexString: color)
+        }
         
         return cell
     }
