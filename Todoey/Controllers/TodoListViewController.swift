@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Chameleon
 import RealmSwift
 
 class TodoListViewController: SwipeTableViewController {
@@ -18,9 +19,25 @@ class TodoListViewController: SwipeTableViewController {
         }
     }
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var addItemButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         getStoredList()
+        tableView.separatorStyle = .none
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        guard let navBar = navigationController?.navigationBar else {
+            fatalError("NavBar doesn't exist")
+        }
+        navBar.barTintColor = HexColor(selectedTodoList!.categoryBgColor)
+        navBar.tintColor = HexColor(selectedTodoList!.categoryBgColor).darken(byPercentage: 0.5)
+        searchBar.barTintColor = HexColor(selectedTodoList!.categoryBgColor)
+        addItemButton.tintColor = HexColor(selectedTodoList!.categoryBgColor).darken(byPercentage: 0.5)
+        self.title = selectedTodoList?.name
+        navBar.tintColor = HexColor(selectedTodoList!.categoryBgColor).darken(byPercentage: 0.2)
     }
     
     //MARK: - Tableview DataSource Methods
@@ -33,11 +50,17 @@ class TodoListViewController: SwipeTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        let parentBgColor = selectedTodoList?.categoryBgColor
         
         if let item = todoItems?[indexPath.row] {
             cell.textLabel?.text = item.title
+            if let color = HexColor(parentBgColor!).darken(byPercentage:CGFloat(indexPath.row) / CGFloat(todoItems!.count)) {
+                cell.backgroundColor = color
+                cell.textLabel?.textColor = ContrastColorOf(color, returnFlat: true)
+            }
+            
             cell.accessoryType = item.isChecked ? .checkmark : .none
         } else {
             cell.textLabel?.text = "No Items Added"
@@ -62,6 +85,7 @@ class TodoListViewController: SwipeTableViewController {
         self.tableView.reloadData()
     }
     
+    //    MARK:- IBActions
     
     @IBAction func addButtonPress(_ sender: UIBarButtonItem) {
         var newItemText = UITextField()

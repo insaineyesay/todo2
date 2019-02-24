@@ -1,2 +1,3 @@
 github "SwipeCellKit/SwipeCellKit" "2.5.1"
+github "ViccAlexander/Chameleon" "2.2.0"
 github "realm/realm-cocoa" "v3.13.1"

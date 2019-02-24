@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import Chameleon
 
 class CategoryTableViewController: SwipeTableViewController  {
 
@@ -17,6 +18,7 @@ class CategoryTableViewController: SwipeTableViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         getCategoryLists()
+        tableView.separatorStyle = .none
     }
 
  
@@ -48,7 +50,9 @@ class CategoryTableViewController: SwipeTableViewController  {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        let color = todoListCategoryArray?[indexPath.row].categoryBgColor
         cell.textLabel?.text = todoListCategoryArray?[indexPath.row].name ?? "No Caetgories yet available"
+        cell.backgroundColor = UIColor(hexString: color)
         
         return cell
     }
@@ -60,7 +64,6 @@ class CategoryTableViewController: SwipeTableViewController  {
     //MARK: - TableView Delegate Methods
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let item = todoListCategoryArray[indexPath.row]
         performSegue(withIdentifier: "goToList", sender: self)
         
     }
