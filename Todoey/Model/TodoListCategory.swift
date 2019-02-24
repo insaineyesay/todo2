@@ -8,8 +8,11 @@
 
 import Foundation
 import RealmSwift
+import Chameleon
 
 class TodoListCategory: Object {
     @objc dynamic var name: String = ""
+    @objc dynamic var categoryBgColor: String = UIColor.randomFlat().hexValue()
     let items = List<TodoListItem>()
+    
 }

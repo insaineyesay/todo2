@@ -21,6 +21,7 @@
 		F07A3BC8221278900061EF3D /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07A3BC7221278900061EF3D /* CategoryTableViewController.swift */; };
 		F0836027221CDC81001767D4 /* SwipeCellKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0836026221CDC81001767D4 /* SwipeCellKit.framework */; };
 		F083602B221CFBC3001767D4 /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F083602A221CFBC3001767D4 /* SwipeTableViewController.swift */; };
+		F083602D221E203B001767D4 /* Chameleon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F083602C221E203B001767D4 /* Chameleon.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		F07A3BC7221278900061EF3D /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 		F0836026221CDC81001767D4 /* SwipeCellKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwipeCellKit.framework; path = Carthage/Build/iOS/SwipeCellKit.framework; sourceTree = "<group>"; };
 		F083602A221CFBC3001767D4 /* SwipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
+		F083602C221E203B001767D4 /* Chameleon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Chameleon.framework; path = Carthage/Build/iOS/Chameleon.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +52,7 @@
 				F0836027221CDC81001767D4 /* SwipeCellKit.framework in Frameworks */,
 				F02D76AF22191B6D00EFAD75 /* RealmSwift.framework in Frameworks */,
 				F02D76B022191B6D00EFAD75 /* Realm.framework in Frameworks */,
+				F083602D221E203B001767D4 /* Chameleon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +94,7 @@
 				F0836026221CDC81001767D4 /* SwipeCellKit.framework */,
 				F02D76AE22191B6D00EFAD75 /* Realm.framework */,
 				F02D76AD22191B6D00EFAD75 /* RealmSwift.framework */,
+				F083602C221E203B001767D4 /* Chameleon.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -221,6 +225,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SwipeCellKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Chameleon.framework",
 			);
 			outputFileListPaths = (
 			);
@@ -228,6 +233,7 @@
 				"$(DERIVED_FILE_DIR)/$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
 				"$(DERIVED_FILE_DIR)/$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
 				"$(DERIVED_FILE_DIR)/$(SRCROOT)/Carthage/Build/iOS/SwipeCellKit.framework",
+				"$(DERIVED_FILE_DIR)/$(SRCROOT)/Carthage/Build/iOS/Chamelon.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
